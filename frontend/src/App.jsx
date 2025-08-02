@@ -15,8 +15,8 @@ import Home from "./routes/root/home";
 // Dashboard pages
 import DashboardLayout from "./routes/dashboard/dashboard-layout";
 import Dashboard from "./routes/dashboard/index";
-// import Workspaces from "./routes/dashboard/workspaces/index";
-// import WorkspaceDetails from "./routes/dashboard/workspaces/workspace-details";
+import Workspaces from "./routes/workspaces/index";
+import WorkspaceDetails from "./routes/workspaces/workspace-details";
 // import ProjectDetails from "./routes/dashboard/project/project-details";
 // import TaskDetails from "./routes/dashboard/task/task-details";
 // import MyTasks from "./routes/dashboard/my-tasks";
@@ -46,12 +46,12 @@ function App() {
         🔐 Protected Routes (Dashboard)
         <Route element={<DashboardLayout />}>
           <Route path="dashboard" element={<Dashboard />} />
-          {/* <Route path="workspaces" element={<Workspaces />} />
+          <Route path="workspaces" element={<Workspaces />} />
           <Route
             path="workspaces/:workspaceId"
             element={<WorkspaceDetails />}
           />
-          <Route
+          {/* <Route
             path="workspaces/:workspaceId/projects/:projectId"
             element={<ProjectDetails />}
           />

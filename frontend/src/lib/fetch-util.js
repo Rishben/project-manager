@@ -39,6 +39,7 @@ const updateData = async (url, data) => {
 };
 
 const fetchData = async (url) => {
+  // console.log("📡 Fetching from URL:", url);
   const response = await api.get(url);
   return response.data;
 };
@@ -48,4 +49,5 @@ const deleteData = async (url) => {
   return response.data;
 };
 
-export { postData, fetchData, updateData, deleteData };
+export { deleteData, fetchData, postData, updateData };
+

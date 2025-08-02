@@ -23,7 +23,8 @@ const Dashboard = () => {
   if (!data) {
     return (
       <div className="text-center text-muted-foreground mt-10">
-        No data available for this workspace.
+        <p>No data available for this workspace.</p>
+        <p>(Please select a WorkSpace)</p>
       </div>
     );
   }
