@@ -4,6 +4,7 @@ import AuthLayout from "./routes/auth/auth-layout";
 
 // Auth pages
 import { AuthProvider } from "./provider/auth-context";
+import ReactQueryProvider from "./provider/react-query-provider";
 import ForgotPassword from "./routes/auth/forgot-password";
 import ResetPassword from "./routes/auth/reset-password";
 import SignIn from "./routes/auth/sign-in";
@@ -29,18 +30,19 @@ import Home from "./routes/root/home";
 function App() {
   return (
     <BrowserRouter>
-    <AuthProvider>
-      <Routes>
-        {/* 🔓 Public Routes (Auth) */}
-        <Route element={<AuthLayout />}>
-          <Route index element={<Home />} />
-          <Route path="sign-in" element={<SignIn />} />
-          <Route path="sign-up" element={<SignUp />} />
-          <Route path="forgot-password" element={<ForgotPassword />} />
-          <Route path="reset-password" element={<ResetPassword />} />
-          <Route path="verify-email" element={<VerifyEmail />} />
-        </Route>
-{/* 
+    <ReactQueryProvider>
+      <AuthProvider>
+        <Routes>
+          {/* 🔓 Public Routes (Auth) */}
+          <Route element={<AuthLayout />}>
+            <Route index element={<Home />} />
+            <Route path="sign-in" element={<SignIn />} />
+            <Route path="sign-up" element={<SignUp />} />
+            <Route path="forgot-password" element={<ForgotPassword />} />
+            <Route path="reset-password" element={<ResetPassword />} />
+            <Route path="verify-email" element={<VerifyEmail />} />
+          </Route>
+          {/* 
         🔐 Protected Routes (Dashboard)
         <Route element={<DashboardLayout />}>
           <Route path="dashboard" element={<Dashboard />} />
@@ -71,8 +73,9 @@ function App() {
         <Route element={<UserLayout />}>
           <Route path="user/profile" element={<UserProfile />} />
         </Route> */}
-      </Routes>
+        </Routes>
       </AuthProvider>
+      </ReactQueryProvider>
     </BrowserRouter>
   );
 }

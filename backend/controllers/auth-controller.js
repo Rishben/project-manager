@@ -1,9 +1,9 @@
-import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import Verification from "../models/verification.js";
-import { sendEmail } from "../libs/send-email.js";
 import aj from "../libs/arcjet.js";
+import { sendEmail } from "../libs/send-email.js";
+import User from "../models/user.js";
+import Verification from "../models/verification.js";
 
 const registerUser = async (req, res) => {
   try {
@@ -15,6 +15,7 @@ const registerUser = async (req, res) => {
     if (decision.isDenied()) {
       res.writeHead(403, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ message: "Invalid email address" }));
+      return;
     }
 
     const existingUser = await User.findOne({ email });
@@ -66,7 +67,6 @@ const registerUser = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -327,9 +327,10 @@ const verifyResetPasswordTokenAndResetPassword = async (req, res) => {
   }
 };
 export {
-  registerUser,
   loginUser,
-  verifyEmail,
+  registerUser,
   resetPasswordRequest,
-  verifyResetPasswordTokenAndResetPassword,
+  verifyEmail,
+  verifyResetPasswordTokenAndResetPassword
 };
+

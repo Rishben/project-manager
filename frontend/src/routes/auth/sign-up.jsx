@@ -1,7 +1,4 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { signUpSchema } from "@/lib/schema"; // Keep this if your schema is JS compatible
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -19,9 +16,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Link, useNavigate } from "react-router-dom"; // react-router-dom for browser routing
-import { useSignUpMutation } from "@/hooks/use-auth"; // your custom hook
+import { useSignUpMutation } from "@/hooks/use-auth";
+import { signUpSchema } from "@/lib/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const SignUp = () => {

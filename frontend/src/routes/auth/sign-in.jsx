@@ -1,19 +1,19 @@
 import { Button } from "@/components/ui/button";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useLoginMutation } from "@/hooks/use-auth";
@@ -123,7 +123,6 @@ const SignIn = () => {
               </Button>
             </form>
           </Form>
-
           <CardFooter className="flex items-center justify-center mt-6">
             <p className="text-sm text-muted-foreground">
               Don&apos;t have an account? <Link to="/sign-up">Sign up</Link>
