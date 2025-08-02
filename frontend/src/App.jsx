@@ -12,8 +12,9 @@ import SignUp from "./routes/auth/sign-up";
 import VerifyEmail from "./routes/auth/verify-email";
 import Home from "./routes/root/home";
 
-// // Dashboard pages
-// import Dashboard from "./routes/dashboard/index";
+// Dashboard pages
+import DashboardLayout from "./routes/dashboard/dashboard-layout";
+import Dashboard from "./routes/dashboard/index";
 // import Workspaces from "./routes/dashboard/workspaces/index";
 // import WorkspaceDetails from "./routes/dashboard/workspaces/workspace-details";
 // import ProjectDetails from "./routes/dashboard/project/project-details";
@@ -42,11 +43,10 @@ function App() {
             <Route path="reset-password" element={<ResetPassword />} />
             <Route path="verify-email" element={<VerifyEmail />} />
           </Route>
-          {/* 
         🔐 Protected Routes (Dashboard)
         <Route element={<DashboardLayout />}>
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="workspaces" element={<Workspaces />} />
+          {/* <Route path="workspaces" element={<Workspaces />} />
           <Route
             path="workspaces/:workspaceId"
             element={<WorkspaceDetails />}
@@ -60,16 +60,16 @@ function App() {
             element={<TaskDetails />}
           />
           <Route path="my-tasks" element={<MyTasks />} />
-          <Route path="members" element={<Members />} />
+          <Route path="members" element={<Members />} /> */}
         </Route>
 
-        🎟 Standalone route (e.g. shared invite link)
+        {/* 🎟 Standalone route (e.g. shared invite link)
         <Route
           path="workspace-invite/:workspaceId"
           element={<WorkspaceInvite />}
-        />
+        /> */}
 
-        👤 User-specific routes
+        {/* 👤 User-specific routes
         <Route element={<UserLayout />}>
           <Route path="user/profile" element={<UserProfile />} />
         </Route> */}
