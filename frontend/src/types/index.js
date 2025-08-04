@@ -220,6 +220,6 @@ const ProjectMemberRole = {
  */
 
 export {
-  ProjectStatus,
-  ProjectMemberRole
+  ProjectMemberRole, ProjectStatus
 };
+

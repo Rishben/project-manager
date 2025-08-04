@@ -1,11 +1,11 @@
 import { z } from "zod";
 
-// Define enum-like objects since no TypeScript enum
 export const ProjectStatus = {
-  PLANNED: "PLANNED",
-  IN_PROGRESS: "IN_PROGRESS",
-  COMPLETED: "COMPLETED",
-  ON_HOLD: "ON_HOLD",
+  PLANNING: "Planning",
+  IN_PROGRESS: "In Progress",
+  COMPLETED: "Completed",
+  ON_HOLD: "On Hold",
+  CANCELLED: "Cancelled",
 };
 
 export const signInSchema = z.object({
@@ -49,10 +49,11 @@ export const projectSchema = z.object({
   title: z.string().min(3, "Title must be at least 3 characters"),
   description: z.string().optional(),
   status: z.enum([
-    ProjectStatus.PLANNED,
+    ProjectStatus.PLANNING,
     ProjectStatus.IN_PROGRESS,
     ProjectStatus.COMPLETED,
     ProjectStatus.ON_HOLD,
+    ProjectStatus.CANCELLED,
   ]),
   startDate: z.string().min(10, "Start date is required"),
   dueDate: z.string().min(10, "Due date is required"),

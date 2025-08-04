@@ -1,16 +1,16 @@
-import { Link } from "react-router";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
-import { cn } from "@/lib/utils";
 import { getTaskStatusColor } from "@/lib";
-import { Progress } from "../ui/progress";
+import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { CalendarDays } from "lucide-react";
+import { Link } from "react-router-dom";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "../ui/card";
+import { Progress } from "../ui/progress";
 
 export const ProjectCard = ({ project, progress, workspaceId }) => {
   return (

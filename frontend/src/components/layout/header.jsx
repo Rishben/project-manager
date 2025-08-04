@@ -1,20 +1,19 @@
+import { useGetWorkspacesQuery } from "@/hooks/use-workspace";
 import { useAuth } from "@/provider/auth-context";
 import { Bell, PlusCircle } from "lucide-react";
-import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { WorkspaceAvatar } from "../workspace/workspace-avatar";
-import { useGetWorkspacesQuery } from "@/hooks/use-workspace";
 
 export const Header = ({
   onWorkspaceSelected,

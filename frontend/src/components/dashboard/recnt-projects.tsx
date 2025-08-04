@@ -1,8 +1,8 @@
-import type { Project } from "@/types";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { getProjectProgress, getTaskStatusColor } from "@/lib";
-import { Link, useSearchParams } from "react-router";
 import { cn } from "@/lib/utils";
+import type { Project } from "@/types";
+import { Link, useSearchParams } from "react-router-dom";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Progress } from "../ui/progress";
 
 export const RecentProjects = ({ data }: { data: Project[] }) => {

@@ -1,18 +1,18 @@
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/provider/auth-context";
 import {
-  CheckCircle2,
-  ChevronsLeft,
-  ChevronsRight,
-  LayoutDashboard,
-  ListCheck,
-  LogOut,
-  Settings,
-  Users,
-  Wrench,
+    CheckCircle2,
+    ChevronsLeft,
+    ChevronsRight,
+    LayoutDashboard,
+    ListCheck,
+    LogOut,
+    Settings,
+    Users,
+    Wrench,
 } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import { ScrollArea } from "../ui/scroll-area";
 import { SidebarNav } from "./sidebar-nav";

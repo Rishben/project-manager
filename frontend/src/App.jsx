@@ -15,18 +15,19 @@ import Home from "./routes/root/home";
 // Dashboard pages
 import DashboardLayout from "./routes/dashboard/dashboard-layout";
 import Dashboard from "./routes/dashboard/index";
-import Workspaces from "./routes/workspaces/index";
-import WorkspaceDetails from "./routes/workspaces/workspace-details";
-// import ProjectDetails from "./routes/dashboard/project/project-details";
-// import TaskDetails from "./routes/dashboard/task/task-details";
-// import MyTasks from "./routes/dashboard/my-tasks";
-// import Members from "./routes/dashboard/members";
+import Members from "./routes/dashboard/members";
+import MyTasks from "./routes/dashboard/my-tasks";
+import ProjectDetails from "./routes/dashboard/project/project-details";
+import TaskDetails from "./routes/dashboard/task/task-details";
+import Workspaces from "./routes/dashboard/workspaces/index";
+import WorkspaceDetails from "./routes/dashboard/workspaces/workspace-details";
 
-// // User
-// import UserProfile from "./routes/user/profile";
+// User
+import UserProfile from "./routes/user/profile";
+import UserLayout from "./routes/user/user-layout";
 
-// // Standalone
-// import WorkspaceInvite from "./routes/dashboard/workspaces/workspace-invite";
+// Standalone
+import WorkspaceInvite from "./routes/dashboard/workspaces/workspace-invite";
 
 function App() {
   return (
@@ -51,7 +52,7 @@ function App() {
             path="workspaces/:workspaceId"
             element={<WorkspaceDetails />}
           />
-          {/* <Route
+          <Route
             path="workspaces/:workspaceId/projects/:projectId"
             element={<ProjectDetails />}
           />
@@ -60,19 +61,19 @@ function App() {
             element={<TaskDetails />}
           />
           <Route path="my-tasks" element={<MyTasks />} />
-          <Route path="members" element={<Members />} /> */}
+          <Route path="members" element={<Members />} />
         </Route>
 
-        {/* 🎟 Standalone route (e.g. shared invite link)
+        🎟 Standalone route (e.g. shared invite link)
         <Route
           path="workspace-invite/:workspaceId"
           element={<WorkspaceInvite />}
-        /> */}
+        />
 
-        {/* 👤 User-specific routes
+        👤 User-specific routes
         <Route element={<UserLayout />}>
           <Route path="user/profile" element={<UserProfile />} />
-        </Route> */}
+        </Route>
         </Routes>
       </AuthProvider>
       </ReactQueryProvider>
