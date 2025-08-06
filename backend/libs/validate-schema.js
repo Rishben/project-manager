@@ -72,15 +72,23 @@ const taskSchema = z.object({
   assignees: z.array(z.string()).min(1, "At least one assignee is required"),
 });
 
+const updateWorkspaceSchema = z.object({
+  name: z.string().min(3),
+  description: z.string().optional(),
+  color: z.string().optional(),
+});
+
 export {
-  registerSchema,
-  loginSchema,
-  verifyEmailSchema,
-  resetPasswordSchema,
   emailSchema,
-  workspaceSchema,
-  projectSchema,
-  taskSchema,
   inviteMemberSchema,
+  loginSchema,
+  projectSchema,
+  registerSchema,
+  resetPasswordSchema,
+  taskSchema,
   tokenSchema,
+  updateWorkspaceSchema,
+  verifyEmailSchema,
+  workspaceSchema
 };
+

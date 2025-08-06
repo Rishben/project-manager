@@ -470,7 +470,8 @@ const getCommentsByTaskId = async (req, res) => {
 const addComment = async (req, res) => {
   try {
     const { taskId } = req.params;
-    const { text } = req.body;
+    const { text, mentions } = req.body;
+    // console.log("Mentions received:", mentions);
 
     const task = await Task.findById(taskId);
 
@@ -502,6 +503,7 @@ const addComment = async (req, res) => {
       text,
       task: taskId,
       author: req.user._id,
+      mentions,
     });
 
     task.comments.push(newComment._id);
@@ -648,19 +650,7 @@ const getMyTasks = async (req, res) => {
 };
 
 export {
-  createTask,
-  getTaskById,
-  updateTaskTitle,
-  updateTaskDescription,
-  updateTaskStatus,
-  updateTaskAssignees,
-  updateTaskPriority,
-  addSubTask,
-  updateSubTask,
-  getActivityByResourceId,
-  getCommentsByTaskId,
-  addComment,
-  watchTask,
-  achievedTask,
-  getMyTasks,
+  achievedTask, addComment, addSubTask, createTask, getActivityByResourceId,
+  getCommentsByTaskId, getMyTasks, getTaskById, updateSubTask, updateTaskAssignees, updateTaskDescription, updateTaskPriority, updateTaskStatus, updateTaskTitle, watchTask
 };
+

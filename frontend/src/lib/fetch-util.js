@@ -49,5 +49,10 @@ const deleteData = async (url) => {
   return response.data;
 };
 
-export { deleteData, fetchData, postData, updateData };
+const patchData = async (url, data) => {
+  const response = await api.patch(url, data);
+  return response.data;
+};
+
+export { deleteData, fetchData, patchData, postData, updateData };
 

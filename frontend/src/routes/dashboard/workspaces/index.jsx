@@ -2,11 +2,11 @@ import { Loader } from "@/components/loader";
 import { NoDataFound } from "@/components/no-data-found";
 import { Button } from "@/components/ui/button";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import { CreateWorkspace } from "@/components/workspace/create-workspace";
 import { WorkspaceAvatar } from "@/components/workspace/workspace-avatar";
@@ -23,7 +23,6 @@ const Workspaces = () => {
   if (isLoading) {
     return <Loader />;
   }
-  console.log("WORKSPACE DETAIL😄😄",workspaces);
   return (
     <>
       <div className="space-y-8">

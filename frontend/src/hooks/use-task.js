@@ -126,7 +126,7 @@ export const useAddCommentMutation = () => {
 
   return useMutation({
     mutationFn: (data) =>
-      postData(`/tasks/${data.taskId}/add-comment`, { text: data.text }),
+      postData(`/tasks/${data.taskId}/add-comment`, { text: data.text, mentions: data.mentions }),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["comments", data.task] });
       queryClient.invalidateQueries({ queryKey: ["task-activity", data.task] });

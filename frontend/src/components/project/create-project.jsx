@@ -163,7 +163,7 @@ export const CreateProjectDialog = ({
                               {field.value ? format(new Date(field.value), "PPPP") : <span>Pick a date</span>}
                             </Button>
                           </PopoverTrigger>
-                          <PopoverContent>
+                          <PopoverContent className="w-fit min-w-[280px] p-0" align="start">
                             <Calendar
                               mode="single"
                               selected={field.value ? new Date(field.value) : undefined}
@@ -217,7 +217,8 @@ export const CreateProjectDialog = ({
                             )}
                           </Button>
                         </PopoverTrigger>
-                        <PopoverContent className="w-full max-w-60 overflow-y-auto" align="start">
+                        {/* className="w-full max-w-60 overflow-y-auto" align="start" */}
+                        <PopoverContent>
                           <div className="flex flex-col gap-2">
                             {workspaceMembers.map((member) => {
                               const selected = selectedMembers.find((m) => m.user === member.user._id);

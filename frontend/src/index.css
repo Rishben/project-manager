@@ -110,6 +110,12 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+.rdp-weekday {
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #aca9a9;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

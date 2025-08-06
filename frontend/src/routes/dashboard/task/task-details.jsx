@@ -12,9 +12,9 @@ import { Watchers } from "@/components/task/watchers";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-    useAchievedTaskMutation,
-    useTaskByIdQuery,
-    useWatchTaskMutation,
+  useAchievedTaskMutation,
+  useTaskByIdQuery,
+  useWatchTaskMutation,
 } from "@/hooks/use-task";
 import { useAuth } from "@/provider/auth-context";
 import { formatDistanceToNow } from "date-fns";
@@ -133,8 +133,9 @@ const TaskDetails = () => {
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-6">
-        <div className="lg:col-span-2">
+      <div className="grid lg:grid-cols-3 gap-6">
+        {/* make changes here */}
+        <div className="lg:col-span-2"> 
           <div className="bg-card rounded-lg p-6 shadow-sm mb-6">
             <div className="flex flex-col md:flex-row justify-between items-start mb-4">
               <div>
@@ -201,7 +202,7 @@ const TaskDetails = () => {
         </div>
 
         {/* right side */}
-        <div className="w-full">
+        <div className="lg:col-span-1">
           <Watchers watchers={task.watchers || []} />
 
           <TaskActivity resourceId={task._id} />

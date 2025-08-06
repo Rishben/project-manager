@@ -1,9 +1,27 @@
-import { fetchData, postData } from "@/lib/fetch-util";
+import { fetchData, postData, updateData, deleteData, patchData } from "@/lib/fetch-util";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useCreateWorkspace = () => {
   return useMutation({
     mutationFn: async (data) => postData("/workspaces", data),
+  });
+};
+
+export const useUpdateWorkspace = () => {
+  return useMutation({
+    mutationFn: async (data) => updateData(`/workspaces/${data.workspaceId}`, data),
+  });
+};
+
+export const useDeleteWorkspace = () => {
+  return useMutation({
+    mutationFn: async (workspaceId) => deleteData(`/workspaces/${workspaceId}`),
+  });
+};
+
+export const useTransferWorkspace = () => {
+  return useMutation({
+    mutationFn: async (data) => patchData(`/workspaces/${data.workspaceId}/transfer`, data),
   });
 };
 
@@ -14,6 +32,13 @@ export const useGetWorkspacesQuery = () => {
   });
 };
 
+export const useGetWorkspaceMembers=(workspaceId) => {
+  return useQuery({
+    queryKey: ["workspace", workspaceId, "members"],
+    queryFn: async () => fetchData(`/workspaces/${workspaceId}/members`),
+  });
+}
+
 export const useGetWorkspaceQuery = (workspaceId) => {
   return useQuery({
     queryKey: ["workspace", workspaceId],
@@ -22,7 +47,6 @@ export const useGetWorkspaceQuery = (workspaceId) => {
 };
 
 export const useGetWorkspaceStatsQuery = (workspaceId) => {
-  console.log("THIS IS THE WORKSPACEID:😭",workspaceId);
   return useQuery({
     queryKey: ["workspace", workspaceId, "stats"],
     queryFn: async () => fetchData(`/workspaces/${workspaceId}/stats`),

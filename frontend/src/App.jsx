@@ -18,6 +18,7 @@ import Dashboard from "./routes/dashboard/index";
 import Members from "./routes/dashboard/members";
 import MyTasks from "./routes/dashboard/my-tasks";
 import ProjectDetails from "./routes/dashboard/project/project-details";
+import Settings from "./routes/dashboard/Settings";
 import TaskDetails from "./routes/dashboard/task/task-details";
 import Workspaces from "./routes/dashboard/workspaces/index";
 import WorkspaceDetails from "./routes/dashboard/workspaces/workspace-details";
@@ -62,6 +63,8 @@ function App() {
           />
           <Route path="my-tasks" element={<MyTasks />} />
           <Route path="members" element={<Members />} />
+          <Route path="achieved" element={<div>Achieved</div>} />
+          <Route path="settings" element={<Settings />} />
         </Route>
 
         🎟 Standalone route (e.g. shared invite link)

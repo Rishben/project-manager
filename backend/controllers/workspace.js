@@ -1,10 +1,11 @@
-import Workspace from "../models/workspace.js";
+import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
+import { recordActivity } from "../libs/index.js";
+import { sendEmail } from "../libs/send-email.js";
 import Project from "../models/project.js";
 import User from "../models/user.js";
 import WorkspaceInvite from "../models/workspace-invite.js";
-import jwt from "jsonwebtoken";
-import { sendEmail } from "../libs/send-email.js";
-import { recordActivity } from "../libs/index.js";
+import Workspace from "../models/workspace.js";
 
 const createWorkspace = async (req, res) => {
   try {
@@ -30,6 +31,121 @@ const createWorkspace = async (req, res) => {
     res.status(500).json({
       message: "Internal server error",
     });
+  }
+};
+
+const updateWorkspaceOwner = async (req, res) => {
+  try {
+    const { workspaceId } = req.params;
+    const { newOwnerId } = req.body;
+    const userId = req.user._id;
+
+    if (!mongoose.Types.ObjectId.isValid(newOwnerId)) {
+      return res.status(400).json({ message: "Invalid user ID" });
+    }
+
+    const workspace = await Workspace.findOne({
+      _id: workspaceId,
+      owner: userId,
+    });
+
+    if (!workspace) {
+      return res.status(403).json({
+        message: "You're not authorized to make changes to this workspace",
+      });
+    }
+
+    if (userId.toString() === newOwnerId.toString()) {
+      return res.status(400).json({
+        message: "You cannot transfer ownership to yourself",
+      });
+    }
+
+    const existingUser = await User.findById(newOwnerId);
+    if (!existingUser) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    workspace.owner = newOwnerId;
+
+    workspace.members = workspace.members.map((member) => {
+      if (member.user.toString() === userId.toString()) {
+        return { ...member.toObject(), role: "admin" };
+      }
+      if (member.user.toString() === newOwnerId.toString()) {
+        return { ...member.toObject(), role: "owner" };
+      }
+      return member;
+    });
+
+    await workspace.save();
+
+    res.status(200).json(workspace);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+};
+
+
+
+const updateWorkspace = async (req, res) => {
+  try {
+    const { workspaceId } = req.params;
+    const { name, description, color } = req.body;
+
+    // const workspace = await Workspace.findById(workspaceId);
+    const userId = req.user._id;
+    const workspace = await Workspace.findOne({
+      _id: workspaceId,
+      owner: userId,
+    });
+
+    if (!workspace) {
+      return res.status(404).json({
+        message: "You're not authorized to make changes to this workspace",
+      });
+    }
+
+    workspace.name = name;
+    workspace.description = description;
+    workspace.color = color;
+
+    await workspace.save();
+
+    res.status(200).json(workspace);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+};
+
+const deleteWorkspace = async (req, res) => {
+  try {
+    const { workspaceId } = req.params;
+
+    const userId = req.user._id;
+    const workspace = await Workspace.findOne({
+      _id: workspaceId,
+      owner: userId,
+    });
+
+    if (!workspace) {
+      return res.status(404).json({ message: "You're not authorized to delete this workspace" });
+    }
+
+    await Workspace.deleteOne({ _id: workspaceId });
+
+    return res.status(200).json({ message: "Workspace deleted successfully" });
+  } catch (error) {
+    console.error("❌ Error deleting workspace:", error);
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -64,6 +180,35 @@ const getWorkspaceDetails = async (req, res) => {
 
     res.status(200).json(workspace);
   } catch (error) {}
+};
+
+const getWorkspaceMembers = async (req, res) => {
+  try {
+    const { workspaceId } = req.params;
+
+    const workspace = await Workspace.findById(workspaceId).populate(
+      "members.user",
+      "_id name email profilePicture"
+    );
+
+    if (!workspace) {
+      return res.status(404).json({ message: "Workspace not found" });
+    }
+
+    const members = workspace.members.map((member) => ({
+      _id: member.user._id,
+      name: member.user.name,
+      email: member.user.email,
+      profilePicture: member.user.profilePicture,
+      role: member.role,
+      joinedAt: member.joinedAt,
+    }));
+
+    res.status(200).json({ members });
+  } catch (error) {
+    console.error("Error fetching members:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 };
 
 const getWorkspaceProjects = async (req, res) => {
@@ -531,12 +676,17 @@ const acceptInviteByToken = async (req, res) => {
   }
 };
 export {
-  createWorkspace,
-  getWorkspaces,
-  getWorkspaceDetails,
-  getWorkspaceProjects,
-  getWorkspaceStats,
-  inviteUserToWorkspace,
   acceptGenerateInvite,
   acceptInviteByToken,
+  createWorkspace,
+  deleteWorkspace,
+  getWorkspaceDetails,
+  getWorkspaceMembers,
+  getWorkspaceProjects,
+  getWorkspaces,
+  getWorkspaceStats,
+  inviteUserToWorkspace,
+  updateWorkspace,
+  updateWorkspaceOwner
 };
+

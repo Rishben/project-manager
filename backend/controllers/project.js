@@ -1,6 +1,6 @@
-import Workspace from "../models/workspace.js";
 import Project from "../models/project.js";
 import Task from "../models/task.js";
+import Workspace from "../models/workspace.js";
 
 const createProject = async (req, res) => {
   try {
@@ -56,7 +56,10 @@ const getProjectDetails = async (req, res) => {
   try {
     const { projectId } = req.params;
 
-    const project = await Project.findById(projectId);
+    const project = await Project.findById(projectId).populate(
+      "members.user",
+      "name email profilePicture"
+    );
 
     if (!project) {
       return res.status(404).json({
@@ -65,7 +68,7 @@ const getProjectDetails = async (req, res) => {
     }
 
     const isMember = project.members.some(
-      (member) => member.user.toString() === req.user._id.toString()
+      (member) => member.user._id.toString() === req.user._id.toString()
     );
 
     if (!isMember) {
@@ -82,6 +85,7 @@ const getProjectDetails = async (req, res) => {
     });
   }
 };
+
 
 const getProjectTasks = async (req, res) => {
   try {
@@ -124,3 +128,4 @@ const getProjectTasks = async (req, res) => {
 };
 
 export { createProject, getProjectDetails, getProjectTasks };
+

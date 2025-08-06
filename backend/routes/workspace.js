@@ -10,9 +10,14 @@ import {
   getWorkspaces,
   getWorkspaceStats,
   inviteUserToWorkspace,
+  updateWorkspace,
+  deleteWorkspace,
+  getWorkspaceMembers,
+  updateWorkspaceOwner,
 } from "../controllers/workspace.js";
 import {
   inviteMemberSchema,
+  updateWorkspaceSchema,
   tokenSchema,
   workspaceSchema,
 } from "../libs/validate-schema.js";
@@ -44,6 +49,13 @@ router.post(
   inviteUserToWorkspace
 );
 
+router.put(
+  "/:workspaceId",
+  authMiddleware,
+  validateRequest({ body: updateWorkspaceSchema }),
+  updateWorkspace
+);
+
 router.post(
   "/:workspaceId/accept-generate-invite",
   authMiddleware,
@@ -56,5 +68,15 @@ router.get("/", authMiddleware, getWorkspaces);
 router.get("/:workspaceId", authMiddleware, getWorkspaceDetails);
 router.get("/:workspaceId/projects", authMiddleware, getWorkspaceProjects);
 router.get("/:workspaceId/stats", authMiddleware, getWorkspaceStats);
+router.get("/:workspaceId/members", authMiddleware, getWorkspaceMembers);
+
+router.patch(
+  "/:workspaceId/transfer",
+  authMiddleware,
+  validateRequest({ params: z.object({ workspaceId: z.string() }) }),
+  updateWorkspaceOwner
+);
+
+router.delete("/:workspaceId", authMiddleware, deleteWorkspace);
 
 export default router;
