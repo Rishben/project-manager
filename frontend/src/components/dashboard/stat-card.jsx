@@ -1,4 +1,3 @@
-import type { StatsCardProps } from "@/types";
 import {
   Card,
   CardContent,
@@ -7,7 +6,7 @@ import {
   CardTitle,
 } from "../ui/card";
 
-export const StatsCard = ({ data }: { data: StatsCardProps }) => {
+const StatsCard = ({ data }) => {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       <Card>
@@ -21,6 +20,7 @@ export const StatsCard = ({ data }: { data: StatsCardProps }) => {
           </p>
         </CardContent>
       </Card>
+
       <Card>
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <CardTitle className="text-sm font-medium">Total Tasks</CardTitle>
@@ -32,6 +32,7 @@ export const StatsCard = ({ data }: { data: StatsCardProps }) => {
           </p>
         </CardContent>
       </Card>
+
       <Card>
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <CardTitle className="text-sm font-medium">To Do</CardTitle>
@@ -43,6 +44,7 @@ export const StatsCard = ({ data }: { data: StatsCardProps }) => {
           </p>
         </CardContent>
       </Card>
+
       <Card>
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <CardTitle className="text-sm font-medium">In Progress</CardTitle>
@@ -57,3 +59,5 @@ export const StatsCard = ({ data }: { data: StatsCardProps }) => {
     </div>
   );
 };
+
+export default StatsCard;

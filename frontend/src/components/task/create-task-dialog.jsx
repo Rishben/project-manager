@@ -201,13 +201,11 @@ export const CreateTaskDialog = ({
                               )}
                             </Button>
                           </PopoverTrigger>
-                          <PopoverContent>
+<PopoverContent className="w-fit min-w-[280px] p-0" align="start">
                             <Calendar
                               mode="single"
                               selected={field.value ? new Date(field.value) : undefined}
-                              onSelect={(date) =>
-                                field.onChange(date?.toISOString() || undefined)
-                              }
+                              onSelect={(date) => field.onChange(date?.toISOString())}
                             />
                           </PopoverContent>
                         </Popover>

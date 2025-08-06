@@ -63,7 +63,6 @@ function App() {
           />
           <Route path="my-tasks" element={<MyTasks />} />
           <Route path="members" element={<Members />} />
-          <Route path="achieved" element={<div>Achieved</div>} />
           <Route path="settings" element={<Settings />} />
         </Route>
 

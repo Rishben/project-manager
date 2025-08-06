@@ -2,11 +2,11 @@ import { Loader } from "@/components/loader";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -25,10 +25,14 @@ const Members = () => {
     const params = {};
 
     searchParams.forEach((value, key) => {
-      params[key] = value;
+      if (key !== "search") {
+        params[key] = value;
+      }
     });
 
-    params.search = search;
+    if (search.trim()) {
+      params.search = search;
+    }
 
     setSearchParams(params, { replace: true });
   }, [search]);
@@ -38,22 +42,22 @@ const Members = () => {
     if (urlSearch !== search) setSearch(urlSearch);
   }, [searchParams]);
 
-  const { data, isLoading } = useGetWorkspaceDetailsQuery(workspaceId) || {};
+  const { data, isPending } = useGetWorkspaceDetailsQuery(workspaceId, {
+    enabled: !!workspaceId,
+  });
 
-  if (isLoading)
+  if (isPending)
     return (
-      <div>
-        <Loader />
+      <div className="text-center text-muted-foreground mt-10">
+        <p>No data available for this workspace.</p>
+        <p>Please select a Workspace to view Members</p>
       </div>
     );
 
-  if (!data || !workspaceId) return <div>No workspace found</div>;
-
   const filteredMembers = data.members?.filter((member) =>
-    [member.user.name, member.user.email, member.role]
-      .some((val) =>
-        val?.toLowerCase().includes(search.toLowerCase())
-      )
+    [member.user.name, member.user.email, member.role].some((val) =>
+      val?.toLowerCase().includes(search.toLowerCase())
+    )
   );
 
   return (

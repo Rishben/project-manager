@@ -45,7 +45,7 @@ const Settings = () => {
   const { data: workspaceData, isLoading } =
     useGetWorkspaceDetailsQuery(workspaceId, {
       enabled: !!workspaceId,
-    }) || {};
+    });
   const { data: membersData } = useGetWorkspaceMembers(workspaceId,{
     enabled: !!workspaceId
   }) || {};
@@ -120,9 +120,16 @@ const Settings = () => {
     setDialogOpen(false);
   };
 
-  if (isLoading) return <Loader />;
+  if (isLoading) return <div><Loader /></div>;
 
-  if (!workspaceData) return <p>Workspace data not available</p>;
+  if (!workspaceData){
+    return (
+      <div className="text-center text-muted-foreground mt-10">
+        <p>No data available for this workspace.</p>
+        <p>Please select a WorkSpace to view Settings</p>
+      </div>
+    );
+  }
 
   return (
     <div>

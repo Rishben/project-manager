@@ -1,16 +1,15 @@
 import { getProjectProgress, getTaskStatusColor } from "@/lib";
 import { cn } from "@/lib/utils";
-import type { Project } from "@/types";
 import { Link, useSearchParams } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Progress } from "../ui/progress";
 
-export const RecentProjects = ({ data }: { data: Project[] }) => {
+const RecentProjects = ({ data }) => {
   const [searchParams] = useSearchParams();
   const workspaceId = searchParams.get("workspaceId");
 
   return (
-    <Card className="lg:col-spa-2">
+    <Card className="lg:col-span-2">
       <CardHeader>
         <CardTitle>Recent Projects</CardTitle>
       </CardHeader>
@@ -28,7 +27,7 @@ export const RecentProjects = ({ data }: { data: Project[] }) => {
               <div key={project._id} className="border rounded-lg p-4">
                 <div className="flex items-center justify-between mb-2">
                   <Link
-                    to={`/workspaces${workspaceId}/projects/${project._id}`}
+                    to={`/workspaces/${workspaceId}/projects/${project._id}`}
                   >
                     <h3 className="font-medium hover:text-primary transition-colors">
                       {project.title}
@@ -44,15 +43,16 @@ export const RecentProjects = ({ data }: { data: Project[] }) => {
                     {project.status}
                   </span>
                 </div>
+
                 <p className="text-sm text-muted-foreground mb-3 line-clamp-3">
                   {project.description}
                 </p>
+
                 <div className="space-y-1">
                   <div className="flex items-center justify-between text-xs">
                     <span>Progress</span>
                     <span>{projectProgress}%</span>
                   </div>
-
                   <Progress value={projectProgress} className="h-2" />
                 </div>
               </div>
@@ -63,3 +63,5 @@ export const RecentProjects = ({ data }: { data: Project[] }) => {
     </Card>
   );
 };
+
+export default RecentProjects;

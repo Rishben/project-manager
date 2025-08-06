@@ -43,11 +43,6 @@ export const SidebarComponent = ({ currentWorkspace }) => {
       icon: Users,
     },
     {
-      title: "Achieved",
-      href: `/achieved`,
-      icon: CheckCircle2,
-    },
-    {
       title: "Settings",
       href: "/settings",
       icon: Settings,

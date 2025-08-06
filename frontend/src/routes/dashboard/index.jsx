@@ -1,6 +1,6 @@
-import { RecentProjects } from "@/components/dashboard/recnt-projects";
-import { StatsCard } from "@/components/dashboard/stat-card";
-import { StatisticsCharts } from "@/components/dashboard/statistics-charts";
+import RecentProjects from "@/components/dashboard/recnt-projects";
+import StatsCard from "@/components/dashboard/stat-card";
+import StatisticsCharts from "@/components/dashboard/statistics-charts";
 import { Loader } from "@/components/loader";
 import { UpcomingTasks } from "@/components/upcoming-tasks";
 import { useGetWorkspaceStatsQuery } from "@/hooks/use-workspace";
@@ -10,8 +10,10 @@ const Dashboard = () => {
   const [searchParams] = useSearchParams();
   const workspaceId = searchParams.get("workspaceId");
 
-  const { data, isPending } = useGetWorkspaceStatsQuery(workspaceId);
-
+  const { data, isPending } = useGetWorkspaceStatsQuery(workspaceId, {
+    enabled: !!workspaceId,
+  });
+  
   if (isPending) {
     return (
       <div>
