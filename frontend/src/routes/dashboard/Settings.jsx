@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
-import { Loader } from "../../components/loader";
+import { Loader } from "../../components/Loader";
 import { Button } from "../../components/ui/button";
 import {
   Form,
