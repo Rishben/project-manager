@@ -1,5 +1,5 @@
 import { BackButton } from "@/components/back-button";
-import { Loader } from "@/components/loader";
+import { Loader } from "@/components/Loader";
 import { CreateTaskDialog } from "@/components/task/create-task-dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";

@@ -1,7 +1,7 @@
 import RecentProjects from "@/components/dashboard/recnt-projects";
 import StatsCard from "@/components/dashboard/stat-card";
 import StatisticsCharts from "@/components/dashboard/statistics-charts";
-import { Loader } from "@/components/loader";
+import { Loader } from "@/components/Loader";
 import { UpcomingTasks } from "@/components/upcoming-tasks";
 import { useGetWorkspaceStatsQuery } from "@/hooks/use-workspace";
 import { useSearchParams } from "react-router-dom";

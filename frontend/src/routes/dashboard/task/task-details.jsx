@@ -1,5 +1,5 @@
 import { BackButton } from "@/components/back-button";
-import { Loader } from "@/components/loader";
+import { Loader } from "@/components/Loader";
 import { CommentSection } from "@/components/task/comment-section";
 import { SubTasksDetails } from "@/components/task/sub-tasks";
 import { TaskActivity } from "@/components/task/task-activity";

@@ -1,4 +1,4 @@
-import { Loader } from "@/components/loader";
+import { Loader } from "@/components/Loader";
 import { CreateProjectDialog } from "@/components/project/create-project";
 import { InviteMemberDialog } from "@/components/workspace/invite-member";
 import { ProjectList } from "@/components/workspace/project-list";

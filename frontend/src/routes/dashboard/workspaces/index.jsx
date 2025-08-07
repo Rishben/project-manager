@@ -1,4 +1,4 @@
-import { Loader } from "@/components/loader";
+import { Loader } from "@/components/Loader";
 import { NoDataFound } from "@/components/no-data-found";
 import { Button } from "@/components/ui/button";
 import {
