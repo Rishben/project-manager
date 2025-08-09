@@ -88,7 +88,7 @@ npm run start
 - MONGODB_URI=mongodb://localhost:27017/projx
 - PORT=3000
 - SEND_GRID_API=sample-sendgrid-api-key-123456789
-
+---
 ## 📬 Contact
 
 Created by [Paiavulla Nikhil](https://github.com/Rishben) — feel free to reach out!
