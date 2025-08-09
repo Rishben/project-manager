@@ -1,10 +1,10 @@
 # 🚀 ProjX: A MERN Stack Project Management Tool
 
-ProjX helps teams organize and track their work better.  
-Users can create workspaces, add projects, and break them down into tasks and subtasks to keep everything on track.  
-It includes a comment feature where teammates can tag each other and chat within tasks, plus a Kanban board to visualize progress.  
-The dashboard gives a clear view of project status, helping users analyze how things are going.  
-Secure token-based login keeps the app safe and private.
+- ProjX helps teams organize and track their work better.  
+- Users can create workspaces, add projects, and break them down into tasks and subtasks to keep everything on track.  
+- It includes a comment feature where teammates can tag each other and chat within tasks, plus a Kanban board to visualize progress.  
+- The dashboard gives a clear view of project status, helping users analyze how things are going.  
+- Secure token-based login keeps the app safe and private.
 
 ---
 🌐 **Live Demo:** [https://project-manager-g042.onrender.com](https://project-manager-g042.onrender.com)
